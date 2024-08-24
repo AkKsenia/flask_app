@@ -1,0 +1,50 @@
+<!-- wine.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="text-center mb-4">Wine Dataset</h1>
+    <h2 class="mb-3">Data Table</h2>
+    <div id="table_div" class="table-responsive mb-4">{{ table_html | safe }}</div>
+    <h2 class="mb-3">Distribution of Alcohol Content</h2>
+    <div id="histogram_div" class="chart mb-4">{{ plot_div_histogram | safe }}</div>
+    <h2 class="mb-3">Compare Models</h2>
+    <form method="POST" class="form-inline mb-4">
+        <input type="hidden" name="form_type" value="compare_models">
+        <button type="submit" class="btn btn-primary">Compare Classification Models</button>
+    </form>
+    {% if accuracy_results %}
+        <h2 class="mb-3">Model Accuracy Comparison</h2>
+        <div id="comparison_div" class="chart mb-4">{{ plot_div_comparison | safe }}</div>
+        <ul class="list-group mb-4">
+            {% for model, accuracy in accuracy_results.items() %}
+                <li class="list-group-item">{{ model }}: {{ accuracy }}%</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h2 class="mb-3">Dynamic Plot</h2>
+    <form method="POST" class="form-inline mb-4">
+        <input type="hidden" name="form_type" value="dynamic_plot">
+        <label for="x_axis">X-axis:</label>
+        <select id="x_axis" name="x_axis">
+            {% for col in feature_names %}
+                <option value="{{ col }}">{{ col }}</option>
+            {% endfor %}
+        </select>
+        <label for="y_axis">Y-axis:</label>
+        <select id="y_axis" name="y_axis">
+            {% for col in feature_names %}
+                <option value="{{ col }}">{{ col }}</option>
+            {% endfor %}
+        </select>
+        <label for="plot_type">Plot Type:</label>
+        <select id="plot_type" name="plot_type">
+            <option value="scatter">Scatter Plot</option>
+            <option value="histogram">Histogram</option>
+            <option value="box">Box Plot</option>
+        </select>
+        <button type="submit" class="btn btn-primary">Create Plot</button>
+    </form>
+    {% if plot_div_dynamic %}
+        <div id="dynamic_div" class="chart mb-4">{{ plot_div_dynamic | safe }}</div>
+    {% endif %}
+{% endblock %}

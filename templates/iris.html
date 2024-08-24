@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="text-center mb-4">Iris Dataset Analytics</h1>
+    <h2 class="mb-3">Model Comparison</h2>
+    <form method="POST" class="form-inline mb-4">
+        <button type="submit" class="btn btn-primary">Compare Classification Models</button>
+    </form>
+
+    <h2 class="mb-3">Interactive Visualizations</h2>
+    <div id="dashboard" class="chart mb-4">{{ plot_div|safe }}</div>
+
+    {% if accuracy_results %}
+        <h2 class="mb-3">Model Accuracy Results:</h2>
+        <ul class="list-group mb-4">
+            {% for model, accuracy in accuracy_results.items() %}
+                <li class="list-group-item">{{ model }}: {{ accuracy }}%</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

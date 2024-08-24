@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset Analytics</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        .chart {
+            border: 1px solid #632616;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #c7a291;
+        }
+        .chart > * {
+            color: #8B0A1A;
+        }
+        h1, h2 {
+            color: #57403d;
+        }
+        .btn-primary {
+            background-color: #8a212e;
+            border-color: #632616;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Dataset Analytics</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/iris">Iris Dataset</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/wine">Wine Dataset</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/results">Classification Results</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
